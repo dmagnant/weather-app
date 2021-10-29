@@ -27,7 +27,7 @@ export default function App() {
       });
 
       function getWeather() {
-        return fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=imperial&appid=b2e0b1ce4d3f6522461c4070a0648aea`)
+        return fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=imperial&appid=50076d931724ee7658999562f8ed03b9`)
           .then(res => handleResponse(res))
           .then(weather => {
             if (Object.entries(weather).length) {

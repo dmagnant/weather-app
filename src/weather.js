@@ -7,19 +7,15 @@ export default function weather({weatherData}) {
 
   return (<div className="main">
       <div className="top">
-        <p className="header">Current weather in: {weatherData.city}</p>
+        <p className="header">Weather in: {weatherData.city}</p>
       </div>
       <div className="flex">
-        <p className="day">{moment().format('dddd')}, <span>{moment().format('LL')}</span></p>
+        <p className="day"> on  {moment().format('dddd')}, <span>{moment().format('LL')}</span></p>
         <div className="flex">
         <p className="conditions">Conditions: {weatherData.conditions}</p>
-        </div>
-      </div>
-
-      <div className="flex">
         <p className="temp">Temperature: {weatherData.temperature} &deg;F</p>
         <p className="temp">Humidity: {weatherData.humidity} %</p>
+        </div>
       </div>
-
     </div>)
 }

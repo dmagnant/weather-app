@@ -10,7 +10,7 @@ export default function SearchBox() {
   const query = new URLSearchParams(search).get('s');
 
 function getWeather() {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=b2e0b1ce4d3f6522461c4070a0648aea`)
+  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=50076d931724ee7658999562f8ed03b9`)
     .then(res => handleResponse(res))
     .then(weather => {
       if (Object.entries(weather).length) {
@@ -64,17 +64,15 @@ if (query != null){
       {(query != null) ? (
     <div className="main">
     <div className="top">
-      <p className="header">Current weather in: {weatherData.city}</p>
+    <p className="header">Weather in: {weatherData.city}</p>
     </div>
     <div className="flex">
-      <p className="day">{moment().format('dddd')}, <span>{moment().format('LL')}</span></p>
+    <p className="day"> on  {moment().format('dddd')}, <span>{moment().format('LL')}</span></p>
       <div className="flex">
         <p className="conditions">Conditions: {weatherData.conditions}</p>
+        <p className="temp">Temperature: {weatherData.temperature} &deg;F</p>
+        <p className="temp">Humidity: {weatherData.humidity} %</p>
       </div>
-    </div>
-    <div className="flex">
-      <p className="temp">Temperature: {weatherData.temperature} &deg;F</p>
-      <p className="temp">Humidity: {weatherData.humidity} %</p>
     </div>
   </div>
       )
