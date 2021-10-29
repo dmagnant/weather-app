@@ -1,4 +1,6 @@
 Weather Comparison APP
+
+
 Use this app to get weather for you current location, and have the ability to search the weather of any city
 
 
