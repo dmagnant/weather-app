@@ -10,7 +10,7 @@ export default function SearchBox() {
   const query = new URLSearchParams(search).get('s');
 
 function getWeather() {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=87eb04e63a1d2d86f382d92a06242e9c`)
+  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=d8cc8d40f54cda7ed28d7b58ae3a2e3e`)
     .then(res => handleResponse(res))
     .then(weather => {
       if (Object.entries(weather).length) {
@@ -61,6 +61,7 @@ if (query != null){
         />
         <button type="submit">Get Weather</button>
     </form>
+      {(query != null) ? (
     <div className="main">
     <div className="top">
       <p className="header">Current weather in: {weatherData.city}</p>
@@ -77,5 +78,11 @@ if (query != null){
       <p className="temp">Humidity: {weatherData.humidity} %</p>
     </div>
   </div>
-  </div>)
+      )
+      :
+      (
+        <div></div>
+      )}
+  </div>
+  )
 }
