@@ -5,7 +5,6 @@ import '.cloudy.svg'
 
 export default function weather({weatherData}) {
 
-
   let weatherIcon = null;
 
   if (weatherData.conditions === 'Clouds') {
@@ -21,6 +20,7 @@ export default function weather({weatherData}) {
     weatherIcon = <img src = "/favicon.ico" alt="default" />;
 
   }
+  
   return (<div className="main">
       <div className="top">
       {/* display City Name */}
