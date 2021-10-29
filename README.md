@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+Weather Comparison APP
+Use this app to get weather for you current location, and have the ability to search the weather of any city
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
