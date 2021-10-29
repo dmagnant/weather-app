@@ -14,7 +14,7 @@ export default function weather({weatherData}) {
         <div className="flex">
         <p className="conditions">Conditions: {weatherData.conditions}</p>
         <p className="temp">Temperature: {weatherData.temperature} &deg;F</p>
-        <p className="temp">Humidity: {weatherData.humidity} %</p>
+        <p className="humid">Humidity: {weatherData.humidity} %</p>
         </div>
       </div>
     </div>)
