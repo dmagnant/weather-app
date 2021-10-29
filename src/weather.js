@@ -16,11 +16,19 @@ export default function weather({weatherData}) {
   else if (weatherData.conditions === 'Snow') {
     weatherIcon = <img src = "/snow.jpg" alt="snow" />;
   }
+  else if (weatherData.conditions === 'Drizzle') {
+    weatherIcon = <img src = "/drizzle.png" alt="drizzle" />;
+  }
+  else if (weatherData.conditions === 'Mist') {
+    weatherIcon = <img src = "/mist.png" alt="mist" />;
+  }
+  else if (weatherData.conditions === 'Haze') {
+    weatherIcon = <img src = "/mist.png" alt="mist" />;
+  }
   else {
     weatherIcon = <img src = "/favicon.ico" alt="default" />;
-
   }
-  
+
   return (<div className="main">
       <div className="top">
       {/* display City Name */}

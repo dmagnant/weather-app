@@ -19,7 +19,7 @@ export default function App() {
       });
     
       // call get Weather function using coordinates
-      getWeather(latitude, longitude)
+      getWeather()
       .then(weather => {
         setWeatherData(weather);
         setError(null);
@@ -30,7 +30,7 @@ export default function App() {
 
       // call the API to obtain weather information
       function getWeather() {
-        return fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=imperial&appid=3c74293c5d07baca71da399bc558efee`)
+        return fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=imperial&appid=b2e0b1ce4d3f6522461c4070a0648aea`)
           .then(res => handleResponse(res))
           .then(weather => {
             if (Object.entries(weather).length) {

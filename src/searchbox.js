@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
 
@@ -6,22 +6,35 @@ export default function SearchBox() {
 
   const [weatherData, setWeatherData] = useState([]);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState();
 
-  // obtain search query
-  const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
+  useEffect(() => {
+    // obtain search query
+    const { search } = window.location;
+    setQuery(new URLSearchParams(search).get('s'));
+    
+      // call get Weather function using coordinates
+      getWeather()
+      .then(weather => {
+        setWeatherData(weather);
+        setError(null);
+      })
+      .catch(err => {
+        setError(err.message);
+      });
 
 // use query to call API based on city name
 function getWeather() {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=3c74293c5d07baca71da399bc558efee`)
-    .then(res => handleResponse(res))
-    .then(weather => {
-      if (Object.entries(weather).length) {
-        const mappedData = mapWeather(weather);
-        return mappedData;
-      }
-    });
+  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=87eb04e63a1d2d86f382d92a06242e9c`)
+  .then(res => handleResponse(res))
+  .then(weather => {
+    if (Object.entries(weather).length) {
+      const mappedData = mapWeather(weather);
+      return mappedData;
+    }
+  });
 }
+}, [query,error])
 
   // handle the response from API
 function handleResponse(response) {
@@ -42,32 +55,31 @@ function mapWeather(data) {
   };
     return mappedWeather;
   }
-if (query != null){
-  getWeather()
-  .then(weather => {
-    setWeatherData(weather);
-    setError(null);
-  })
-  .catch(err => {
-    setError(err.message);
-  });
-}
+
 
 let weatherIcon = null;
 
-if (weatherData.conditions === 'Clouds') {
-  weatherIcon = <img src = "/clouds.png" alt="cloudy" />;
-}
-else if (weatherData.conditions === 'Rain') {
-  weatherIcon = <img src = "/rain.jpg" alt="rain" />;
-}
-else if (weatherData.conditions === 'Snow') {
-  weatherIcon = <img src = "/snow.jpg" alt="snow" />;
-}
-else {
-  weatherIcon = <img src = "/favicon.ico" alt="default" />;
-
-}
+  if (weatherData.conditions === 'Clouds') {
+    weatherIcon = <img src = "/clouds.png" alt="cloudy" />;
+  }
+  else if (weatherData.conditions === 'Rain') {
+    weatherIcon = <img src = "/rain.jpg" alt="rain" />;
+  }
+  else if (weatherData.conditions === 'Snow') {
+    weatherIcon = <img src = "/snow.jpg" alt="snow" />;
+  }
+  else if (weatherData.conditions === 'Drizzle') {
+    weatherIcon = <img src = "/drizzle.png" alt="drizzle" />;
+  }
+  else if (weatherData.conditions === 'Mist') {
+    weatherIcon = <img src = "/mist.png" alt="mist" />;
+  }
+  else if (weatherData.conditions === 'Haze') {
+    weatherIcon = <img src = "/mist.png" alt="mist" />;
+  }
+  else {
+    weatherIcon = <img src = "/favicon.ico" alt="default" />;
+  }
 
   return (
     <div>
