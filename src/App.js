@@ -11,12 +11,14 @@ export default function App() {
   const [weatherData, setWeatherData] = useState([]);
   const [error, setError] = useState(null);
 
+  // get location coordinates
   useEffect(() => {
       navigator.geolocation.getCurrentPosition(function(position) {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
       });
     
+      // call get Weather function using coordinates
       getWeather(latitude, longitude)
       .then(weather => {
         setWeatherData(weather);
@@ -26,8 +28,9 @@ export default function App() {
         setError(err.message);
       });
 
+      // call the API to obtain weather information
       function getWeather() {
-        return fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=imperial&appid=50076d931724ee7658999562f8ed03b9`)
+        return fetch(`https://api.openweathermap.org/data/2.5/weather/?lat=${latitude}&lon=${longitude}&units=imperial&appid=87eb04e63a1d2d86f382d92a06242e9c`)
           .then(res => handleResponse(res))
           .then(weather => {
             if (Object.entries(weather).length) {
@@ -38,7 +41,7 @@ export default function App() {
       }
   }, [latitude,longitude, error])
 
-
+  // handle the response / throw error if location is not enabled
   function handleResponse(response) {
     if (response.ok) {
       return response.json();
@@ -47,6 +50,7 @@ export default function App() {
     }
   }
 
+// map weather data from json to be able to display it later
   function mapWeather(data) {
     const mappedWeather = {
       date: data.dt * 1000, // convert from seconds to milliseconds
@@ -58,6 +62,8 @@ export default function App() {
     };
       return mappedWeather;
     }
+
+// if weather data is avaialble, display it and searchbox
 return (
   <div className="App">
     {(typeof weatherData != 'undefined') ? (
@@ -66,6 +72,7 @@ return (
         <SearchBox/>
       </div>
     ): (
+      // otherwise, display loading screen
       <div>
         <Dimmer active>
           <Loader>Loading..</Loader>

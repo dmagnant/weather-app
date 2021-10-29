@@ -6,11 +6,14 @@ export default function SearchBox() {
 
   const [weatherData, setWeatherData] = useState([]);
   const [error, setError] = useState(null);
+
+  // obtain search query
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
 
+// use query to call API based on city name
 function getWeather() {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=50076d931724ee7658999562f8ed03b9`)
+  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=87eb04e63a1d2d86f382d92a06242e9c`)
     .then(res => handleResponse(res))
     .then(weather => {
       if (Object.entries(weather).length) {
@@ -20,15 +23,14 @@ function getWeather() {
     });
 }
 
+  // handle the response from API
 function handleResponse(response) {
 if (response.ok) {
     return response.json();
   } 
-  else {
-    throw new Error("Please Enable your Location in your browser!");
-  }
 }
 
+// map weather data from json to be able to display it later
 function mapWeather(data) {
   const mappedWeather = {
     date: data.dt * 1000, // convert from seconds to milliseconds
