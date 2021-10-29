@@ -25,7 +25,7 @@ export default function SearchBox() {
 
 // use query to call API based on city name
 function getWeather() {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=87eb04e63a1d2d86f382d92a06242e9c`)
+  return fetch(`https://api.openweathermap.org/data/2.5/weather/?q=${query}&units=imperial&appid=3c74293c5d07baca71da399bc558efee`)
   .then(res => handleResponse(res))
   .then(weather => {
     if (Object.entries(weather).length) {
