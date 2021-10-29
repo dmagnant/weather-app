@@ -61,7 +61,15 @@ if (query != null){
         placeholder="search weather by city name"
         name="s"
         />
-        <button type="submit">Get Weather</button>
+        {/* once search button is clicked, execute Weather Search */}
+        <button onClick='  getWeather()
+          .then(weather => {
+            setWeatherData(weather);
+            setError(null);
+          })
+          .catch(err => {
+            setError(err.message);
+          });' type="submit">Get Weather</button>
     </form>
       {(query != null) ? (
     <div className="main">
